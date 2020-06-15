@@ -46,9 +46,10 @@ with open(path, "r", newline = '') as initialfile:
     print("Greatest Increase in Profits: " + date + "(" + value + ")")
     print("Greatest Decrease in Profits: " + date + "(" + value + ")")
 
-
+#setting path for outputfile
 summaryfilepath = os.path.join("Resources", "budgetdata_summary.csv")
 
+#writing output to file
 with open(summaryfilepath, "w", newline='') as summaryfile:
 
     summarywrite = csv.writer(summaryfile, delimiter = ",")
