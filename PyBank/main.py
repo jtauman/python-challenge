@@ -17,10 +17,14 @@ with open(path, "r", newline = '') as initialfile:
 
     initialread = csv.reader(initialfile, delimiter = ',')
 
+    #remover header row
+    header = next(initialread) 
+
     #loop through the file
     for row in initialread:
+        
         #count the number of rows - header
-        #count = intitalread[1]
+        rowcount = initialread.line_num - 1
 
         #sum all amounts in "Profit/Losses" column
         #sumtotal = sum  initialread[2]
@@ -38,24 +42,24 @@ with open(path, "r", newline = '') as initialfile:
         #if row = min change then return initialread[1] + initial read [2]
 
     
-    print ("Financial Analsysis")
+    print("Financial Analsysis")
     print("------------------------")
-    print("Total Months: " + str(count))
-    print("Total:  $" + str(sumtotal)) 
-    print("Average Change:  $" + str(avchange))
-    print("Greatest Increase in Profits: " + date + "(" + value + ")")
-    print("Greatest Decrease in Profits: " + date + "(" + value + ")")
+    print("Total Months: " + str(rowcount))
+    #print("Total:  $" + str(sumtotal)) 
+    #print("Average Change:  $" + str(avchange))
+    #print("Greatest Increase in Profits: " + date + "(" + value + ")")
+    #print("Greatest Decrease in Profits: " + date + "(" + value + ")")
 
 #setting path for outputfile
 summaryfilepath = os.path.join("Resources", "budgetdata_summary.csv")
 
 #writing output to file
-with open(summaryfilepath, "w", newline='') as summaryfile:
+#with open(summaryfilepath, "w", newline='') as summaryfile:
 
-    summarywrite = csv.writer(summaryfile, delimiter = ",")
-    summarywrite.writerow("Financial Analsysis")
-    summarywrite.writerow("Total Months: " + str(count))
-    summarywrite.writerow("Total:  $" + str(sumtotal)) 
-    summarywrite.writerow("Average Change:  $" + str(avchange))
-    summarywrite.writerow("Greatest Increase in Profits: " + date + "(" + value + ")")
-    summarywrite.writerow("Greatest Decrease in Profits: " + date + "(" + value + ")")
+    #summarywrite = csv.writer(summaryfile, delimiter = ",")
+    #summarywrite.writerow("Financial Analsysis")
+    #summarywrite.writerow("Total Months: " + str(count))
+    #summarywrite.writerow("Total:  $" + str(sumtotal)) 
+    #summarywrite.writerow("Average Change:  $" + str(avchange))
+    #summarywrite.writerow("Greatest Increase in Profits: " + date + "(" + value + ")")
+    #summarywrite.writerow("Greatest Decrease in Profits: " + date + "(" + value + ")")
