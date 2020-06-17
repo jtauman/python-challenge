@@ -12,6 +12,10 @@ import csv
 #setting path to the initial file
 path = os.path.join("Resources", "budget_data.csv")
 
+date = []
+profitloss = []
+
+
 #reading file
 with open(path, "r", newline = '') as initialfile:
 
@@ -23,11 +27,12 @@ with open(path, "r", newline = '') as initialfile:
     #loop through the file
     for row in initialread:
         
-        #count the number of rows - header
-        rowcount = initialread.line_num - 1
+        #loop through rows and append values to appropriate list
+        date.append(row[0])
+        profitloss.append(int(row[1]))
 
         #sum all amounts in "Profit/Losses" column
-        #sumtotal = sum  initialread[2]
+        sumtotal = sum(profitloss)
 
         #calculate averege change per month in the profit/loss column
         #change = row i+1 - row i
@@ -44,8 +49,8 @@ with open(path, "r", newline = '') as initialfile:
     
     print("Financial Analsysis")
     print("------------------------")
-    print("Total Months: " + str(rowcount))
-    #print("Total:  $" + str(sumtotal)) 
+    print("Total Months: " + str(len(date))) #count the number of elements in the date list
+    print("Total:  $" + str(sumtotal)) 
     #print("Average Change:  $" + str(avchange))
     #print("Greatest Increase in Profits: " + date + "(" + value + ")")
     #print("Greatest Decrease in Profits: " + date + "(" + value + ")")
