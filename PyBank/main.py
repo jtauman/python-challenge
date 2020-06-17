@@ -14,6 +14,11 @@ path = os.path.join("Resources", "budget_data.csv")
 
 date = []
 profitloss = []
+change = []
+x= 867884
+
+def average (numbers): 
+    return sum(numbers) / len(numbers)
 
 
 #reading file
@@ -35,8 +40,8 @@ with open(path, "r", newline = '') as initialfile:
         sumtotal = sum(profitloss)
 
         #calculate averege change per month in the profit/loss column
-        #change = row i+1 - row i
-        #average change = mean of change
+        change.append(int(row[1])-x)
+        x = int(row[1])
 
         #greatest increase in profits
         #find max change
@@ -46,12 +51,14 @@ with open(path, "r", newline = '') as initialfile:
         #find min change
         #if row = min change then return initialread[1] + initial read [2]
 
-    
+    change.pop(0)
+    mean = round(average(change),2)
+
     print("Financial Analsysis")
     print("------------------------")
     print("Total Months: " + str(len(date))) #count the number of elements in the date list
     print("Total:  $" + str(sumtotal)) 
-    #print("Average Change:  $" + str(avchange))
+    print("Average Change:  $" + str(mean))
     #print("Greatest Increase in Profits: " + date + "(" + value + ")")
     #print("Greatest Decrease in Profits: " + date + "(" + value + ")")
 
