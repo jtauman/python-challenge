@@ -12,14 +12,15 @@ import csv
 #setting path to the initial file
 path = os.path.join("Resources", "budget_data.csv")
 
+#setting up lists
 date = []
 profitloss = []
 change = []
-x= 867884
+x= 867884 #first value in the profit/loss column
 
+#creating function to define average
 def average (numbers): 
     return sum(numbers) / len(numbers)
-
 
 #reading file
 with open(path, "r", newline = '') as initialfile:
@@ -42,25 +43,22 @@ with open(path, "r", newline = '') as initialfile:
         #calculate averege change per month in the profit/loss column
         change.append(int(row[1])-x)
         x = int(row[1])
-
-        #greatest increase in profits
-        #find max change
-        #if row = maxchange the return initalread[1] + initialread [2]
-
-        #greatest decrease in losses
-        #find min change
-        #if row = min change then return initialread[1] + initial read [2]
-
+  
     change.pop(0)
-    mean = round(average(change),2)
+    mean = round(average(change),2) #average of the change in the profit/loss column
+    maxprofit = max(change) #max value in the list of change in the profit/loss column
+    maxindex = change.index(maxprofit) #find the index of the max profit so that the associated date can be found (+1 due to pop in change)
+    maxloss = min(change) #min value in the list of change in the profit/loss column
+    lossindex = change.index(maxloss)
 
     print("Financial Analsysis")
     print("------------------------")
     print("Total Months: " + str(len(date))) #count the number of elements in the date list
     print("Total:  $" + str(sumtotal)) 
     print("Average Change:  $" + str(mean))
-    #print("Greatest Increase in Profits: " + date + "(" + value + ")")
-    #print("Greatest Decrease in Profits: " + date + "(" + value + ")")
+    print (f'Greatest Increase in Profits: {date[maxindex + 1]}  (${change[maxindex]})')
+    print (f'Greatest Decrease in profits: {date[lossindex + 1]}  (${change[lossindex]})')
+
 
 #setting path for outputfile
 summaryfilepath = os.path.join("Resources", "budgetdata_summary.csv")
