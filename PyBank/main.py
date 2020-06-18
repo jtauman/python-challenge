@@ -51,25 +51,27 @@ with open(path, "r", newline = '') as initialfile:
     maxloss = min(change) #min value in the list of change in the profit/loss column
     lossindex = change.index(maxloss)
 
-    print("Financial Analsysis")
+    print("Financial Analysis")
     print("------------------------")
     print("Total Months: " + str(len(date))) #count the number of elements in the date list
     print("Total:  $" + str(sumtotal)) 
     print("Average Change:  $" + str(mean))
     print (f'Greatest Increase in Profits: {date[maxindex + 1]}  (${change[maxindex]})')
-    print (f'Greatest Decrease in profits: {date[lossindex + 1]}  (${change[lossindex]})')
+    print (f'Greatest Decrease in Profits: {date[lossindex + 1]}  (${change[lossindex]})')
 
 
 #setting path for outputfile
-summaryfilepath = os.path.join("Resources", "budgetdata_summary.csv")
+summaryfilepath = os.path.join("analysis", "budgetdata_summary.txt")
 
 #writing output to file
-#with open(summaryfilepath, "w", newline='') as summaryfile:
+with open(summaryfilepath, "w", newline='') as summaryfile:
 
-    #summarywrite = csv.writer(summaryfile, delimiter = ",")
-    #summarywrite.writerow("Financial Analsysis")
-    #summarywrite.writerow("Total Months: " + str(count))
-    #summarywrite.writerow("Total:  $" + str(sumtotal)) 
-    #summarywrite.writerow("Average Change:  $" + str(avchange))
-    #summarywrite.writerow("Greatest Increase in Profits: " + date + "(" + value + ")")
-    #summarywrite.writerow("Greatest Decrease in Profits: " + date + "(" + value + ")")
+    summaryfile.write("Financial Analysis\n")
+    summaryfile.write("----------------------------\n")
+    summaryfile.write("Total Months: " + str(len(date))+"\n")
+    summaryfile.write("Total:  $" + str(sumtotal)+"\n") 
+    summaryfile.write("Average Change:  $" + str(mean)+"\n")
+    summaryfile.write(f'Greatest Increase in Profits: {date[maxindex + 1]}  (${change[maxindex]})\n')
+    summaryfile.write(f'Greatest Decrease in Profits: {date[lossindex + 1]}  (${change[lossindex]})\n')
+
+
