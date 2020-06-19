@@ -26,39 +26,30 @@ with open(path, "r", newline = '') as initialfile:
         voterID.append(row[0])
         candidate.append(row[2])
         
-#A complete list of candidates who received votes
+#A unique list of candidates who received votes
         if row[2] not in uniquecandidate:
             uniquecandidate.append(row[2])
 
 
-#The percentage of votes each candidate won
-
+totalvotes = int(len(voterID))
 
 #The total number of votes each candidate won
-
-#for item in candidate:
-    #candidatetotal.append(uniquecandidate.count)    
-#The winner of the election based on popular vote.
-
-totalvotes = int(len(voterID))
-print([ [l, candidate.count(l)] for l in set(candidate)])
+#create a dictionary, count the occurrence of each candidate for each candidate(l) in the set (candidate)
 candidate_dict = dict((l, candidate.count(l)) for l in set(candidate))
-print (candidate_dict)
 
 print("Election Results")
 print("------------------------")
 print("Total Votes: " + str(totalvotes))
 print("------------------------")
 
+# for each key value pair, print key(x), %of votes ((round(y/totalvotes*100, 2)) and total votes (y)
 for x , y in candidate_dict.items():
     print (x + ": " + str(round(y/totalvotes*100, 2)) + "%  (" + str(y) + ")")
 
 print("------------------------")
 
-
-#print(str(candidatetotal))
-#print(candidate[0] + str(count0))
-#print("Total:  $" + str(sumtotal)) 
-#print("Average Change:  $" + str(mean))
-#print (f'Greatest Increase in Profits: {date[maxindex + 1]}  (${change[maxindex]})')
-#print (f'Greatest Decrease in Profits: {date[lossindex + 1]}  (${change[lossindex]})')
+#The winner of the election based on popular vote. 
+#getting the key from the maximum value
+keymax = max(candidate_dict, key=candidate_dict.get)
+print("Winner: " + keymax)
+print("------------------------")
